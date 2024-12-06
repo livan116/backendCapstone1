@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const userRoute = require("./routes/user")
+const bodyParser = require("body-parser");
 const app = express();
 dotenv.config();
 
@@ -11,6 +13,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "hello.html"));
 });
+
+app.use(express.urlencoded({extended:true}))
+app.use(bodyParser.json());
+app.use("/api/user",userRoute);
+
 
 app.listen(PORT, () => {
   console.log(`Server is Listening on PORT : ${PORT}`);
