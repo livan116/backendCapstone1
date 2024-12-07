@@ -2,7 +2,8 @@ const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const userRoute = require("./routes/user")
+const userRoute = require("./routes/user");
+const jobRoute = require("./routes/job")
 const bodyParser = require("body-parser");
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 app.use(express.urlencoded({extended:true}))
 app.use(bodyParser.json());
 app.use("/api/user",userRoute);
+app.use("/api/job",jobRoute);
 
 
 app.listen(PORT, () => {

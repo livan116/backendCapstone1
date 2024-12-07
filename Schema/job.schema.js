@@ -10,13 +10,18 @@ const jobSchema = new mongoose.Schema({
         required:true,
      },
      salary:{
-        type:String,
+        type:Number,
         required:true,
      },
      jobType:{
         type:String,
         required:true,
         enum:["full-time","part-time","contractor","internship",'freelancer'],
+     },
+     user:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"User",
+      required:true
      }
 })
 
